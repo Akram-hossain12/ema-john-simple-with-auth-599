@@ -6,6 +6,10 @@ import Shop from './components/Shop/Shop';
 import Orders from './components/Orders/Orders';
 import Inventory from './components/Inventory/Inventory';
 import { productsAndCartLoader } from './loaders/productsAndCartLoader';
+import Login from './components/Login/Login';
+import Signup from './components/signup/Signup';
+import Shiping from './components/Shiping/Shiping';
+import PrivetRouter from './router/PrivetRouter';
 
 
 function App() {
@@ -17,20 +21,32 @@ function App() {
         {
           path: '/',
           loader: () => fetch('products.json'),
-          element: <Shop></Shop>
+          element:<PrivetRouter> <Shop></Shop></PrivetRouter>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
+        },
+        {
+          path:'/signup',
+          element:<Signup></Signup>
         },
         {
           path:'orders',
           loader: productsAndCartLoader,
-          element: <Orders></Orders>
+          element:<PrivetRouter> <Orders></Orders></PrivetRouter>
         },
         {
           path: 'inventory',
           element: <Inventory></Inventory>
         },
         {
+          path:'/shiping',
+          element:<PrivetRouter><Shiping></Shiping></PrivetRouter>
+        },
+        {
           path:'about',
-          element:<About></About>
+          element:<PrivetRouter><About></About></PrivetRouter>
         }
       ]
     },
